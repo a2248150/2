@@ -1,5 +1,13 @@
 body {
   
-  font-family: helvw
+  font-family: helvetica, arial, sans-erif;
+  margin: 2em;
+  
+}
+
+h1 {
+  
+  font-family: italic;
+  color: black
   
 }
