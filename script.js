@@ -43,4 +43,17 @@ function searchForPark(location) {
 // process search results for parks
 function processParks(results, status) {
   
+  if (status == google.maps.places.PlaceServiceStatus.Ok) {
+    
+    for(let i = 0; i < results.length ; i++) {
+      let place = results[i];
+      console.log(place);
+      //createMarker(place);
+    }
+    
+  }
+  
 }
+
+// create a marker at place
+// https://developers.google.com/maps/documentation/javascript/examples/place-search
