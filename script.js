@@ -40,4 +40,7 @@ function searchForPark(location) {
   
 }
 
-function process
+// process search results for parks
+function processParks(results, status) {
+  
+}
