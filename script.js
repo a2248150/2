@@ -13,8 +13,29 @@ let markers = [];
 // when the window loads, intialize the map
 window.onload = initializeMap;
 
+// intialize map
 function initializeMap() {
   
-  
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: myLocation,
+    zoom: 13
+  });
   
 } // initializeMap
+
+// Search for parks within 5 km
+// From https://developers.google.com/maps/documentation/javascript/examples/place-search#maps_place_search-javascript
+
+function searchForPark(location) {
+  
+  // use places API to search for all parks within 5 km
+  let request = {
+    location: location,
+    radius: "500",
+    query: "park"
+  };
+  
+  service = new google.maps.places.PlacesService(map);
+  service.text
+  
+}
