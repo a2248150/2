@@ -36,6 +36,8 @@ function searchForPark(location) {
   };
   
   service = new google.maps.places.PlacesService(map);
-  service.text
+  service.textSearch(request, processParks);
   
 }
+
+function process
