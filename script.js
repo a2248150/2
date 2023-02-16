@@ -8,7 +8,7 @@ let service;
 let infoWindowPark; // for park info
 let infoWindowCurrentLocation; // for your location
 
-let markers = [];
+let markers = []; // list of all markers on the map
 
 // when the window loads, intialize the map
 window.onload = initializeMap;
@@ -61,11 +61,7 @@ function initializeMap() {
   });
 }
 
-function handleLocationError(
-  browserHasGeolocation: boolean,
-  infoWindow: google.maps.InfoWindow,
-  pos: google.maps.LatLng
-) {
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(
     browserHasGeolocation
@@ -136,4 +132,31 @@ function createMarker(place) {
     infoWindowPark.open(map, marker);
   });
   
-}
+  markers.push(marker);
+  
+} // createMarker
+
+// https://developers.google.com/maps/documentation/javascript/examples/marker-remove
+// Sets the map on all markers in the array.
+ function setMapOnAll(map) {
+   
+   for (let i = 0 ; i < markers.length; i++) {
+     markers[i].setMap(map);
+   }
+   
+ }
+
+// Removes the markers from the map, but keeps them in the array.
+ function clearMarkers() {
+   setMapOnAll(null);
+ }
+
+// Shows any markers currently in the array.
+ function showMarkers() {
+   setMapOnAll(map);
+ }
+
+ function deleteMarkers() {
+   clearMarkers();
+   markers = [];
+ }
