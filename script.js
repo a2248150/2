@@ -68,18 +68,24 @@ function createMarker(place) {
   if(!place.geometry || !place.geometry.location) return;
   
   const scaledIcon = {
-    url: place.icon;
-    
+    url: place.icon,
+    scaledSize: new google.maps.Size(30, 30),
+    origin: new google.maps.Point(0, 0), // origin
+    anchor: new google.maps.Point(0, 0) // anchor
   }
   
   // https://developers.google.com/maps/documentation/javascript/markers
   const marker = new google.maps.Marker({
     map,
     position: place.geometry.location,
+    icon: scaledIcon,
     title: place.name
   });
   
   google.maps.event.addListener(marker, "click", () => {
+    let contentString = "<h3>" + place.name + "</h3>" + "Rating: <b>"
+         + place.rating + "<b> / 5 <p>" + place.formatted_address + "</p>";
+    
     infoWindowPark.setContent(place.name || "");
     infoWindowPark.open(map, marker);
   });
