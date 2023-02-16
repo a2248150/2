@@ -21,6 +21,8 @@ function initializeMap() {
     zoom: 13
   });
   
+  searchForPark(myLocation);
+  
 } // initializeMap
 
 // Search for parks within 5 km
@@ -60,6 +62,8 @@ function processParks(results, status) {
 function createMarket(place) {
   
   if(!place.geometry || !place.geometry.location) return;
+  
+  // https://developers.google.com/maps/documentation/javascript/markers
   const marker = new google.maps.Marker({
     map,
     position: place.geometry.location,
