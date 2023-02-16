@@ -16,16 +16,22 @@ window.onload = initializeMap;
 // intialize map
 function initializeMap() {
   
-  // https://developers.google.com/maps/documentation/javascipt/infowindows
-  infoWindowCurrentLocation = new google.maps.InfoWindow();
-  infoWindowPark = new google.maps.InfoWindow();
-  
   map = new google.maps.Map(document.getElementById("map"), {
     center: myLocation,
     zoom: 13
   });
   
   searchForPark(myLocation);
+  
+  // https://developers.google.com/maps/documentation/javascipt/infowindows
+  infoWindowCurrentLocation = new google.maps.InfoWindow();
+  infoWindowPark = new google.maps.InfoWindow();
+  
+  // Create "Pan to Current Location" button
+  // https://developers.google.com/maps/documentation/javascript/geolocation
+  const locationButton = document.createElement("button");
+  locationButton.textContent = "Pan to Current Location";
+  locationButton.classList.add("custom-map-control-button");
   
 } // initializeMap
 
