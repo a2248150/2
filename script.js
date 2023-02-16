@@ -49,6 +49,9 @@ function initializeMap() {
           infoWindowCurrentLocation.setContent("Location found.");
           infoWindowCurrentLocation.open(map);
           map.setCenter(pos);
+          
+          searchForPark(pos);
+          
         },
         () => {
           handleLocationError(true, infoWindowCurrentLocation, map.getCenter());
@@ -92,6 +95,8 @@ function searchForPark(location) {
 function processParks(results, status) {
   
   if (status == google.maps.places.PlaceServiceStatus.Ok) {
+    
+    deleteMarkers();
     
     for(let i = 0; i < results.length ; i++) {
       let place = results[i];
