@@ -33,7 +33,47 @@ function initializeMap() {
   locationButton.textContent = "Pan to Current Location";
   locationButton.classList.add("custom-map-control-button");
   
-} // initializeMap
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+
+  locationButton.addEventListener("click", () => {
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+
+          infoWindowCurrentLocation.setPosition(pos);
+          infoWindowCurrentLocation.setContent("Location found.");
+          infoWindowCurrentLocation.open(map);
+          map.setCenter(pos);
+        },
+        () => {
+          handleLocationError(true, infoWindowCurrentLocation, map.getCenter());
+        }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindowCurrentLocation, map.getCenter());
+    }
+  });
+}
+
+function handleLocationError(
+  browserHasGeolocation: boolean,
+  infoWindow: google.maps.InfoWindow,
+  pos: google.maps.LatLng
+) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+  );
+  infoWindow.open(map);
+}
 
 // Search for parks within 5 km
 // From https://developers.google.com/maps/documentation/javascript/examples/place-search#maps_place_search-javascript
