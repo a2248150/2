@@ -94,7 +94,7 @@ function searchForPark(location) {
 // process search results for parks
 function processParks(results, status) {
   
-  if (status == google.maps.places.PlaceServiceStatus.Ok) {
+  if (status == google.maps.places.PlaceServiceStatus.OK) {
     
     deleteMarkers();
     
