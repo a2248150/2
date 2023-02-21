@@ -101,7 +101,7 @@ function processParks(results, status) {
     for(let i = 0; i < results.length ; i++) {
       let place = results[i];
       console.log(place);
-      //createMarker(place);
+      createMarker(place);
     }
     
   }
@@ -133,7 +133,7 @@ function createMarker(place) {
     let contentString = "<h3>" + place.name + "</h3>" + "Rating: <b>"
          + place.rating + "<b> / 5 <p>" + place.formatted_address + "</p>";
     
-    infoWindowPark.setContent(place.name || "");
+    infoWindowPark.setContent(contentString || "");
     infoWindowPark.open(map, marker);
   });
   
