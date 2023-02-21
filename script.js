@@ -10,6 +10,8 @@ let infoWindowCurrentLocation; // for your location
 
 let markers = []; // list of all markers on the map
 
+let radius = 500;
+
 // when the window loads, intialize the map
 window.onload = initializeMap;
 
@@ -82,7 +84,7 @@ function searchForPark(location) {
   // use places API to search for all parks within 5 km
   let request = {
     location: location,
-    radius: "500",
+    radius: radius,
     query: "park"
   };
   
@@ -116,9 +118,9 @@ function createMarker(place) {
   
   const scaledIcon = {
     url: place.icon,
-    scaledSize: new google.maps.Size(30, 30),
+    scaledSize: new google.maps.Size(40, 40),
     origin: new google.maps.Point(0, 0), // origin
-    anchor: new google.maps.Point(0, 0) // anchor
+    anchor: new google.maps.Point(20, 40) // anchor
   }
   
   // https://developers.google.com/maps/documentation/javascript/markers
