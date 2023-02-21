@@ -98,7 +98,7 @@ function processParks(results, status) {
     
     deleteMarkers();
     
-    for(let i = 0; i < results.length ; i++) {
+    for (let i = 0; i < results.length ; i++) {
       let place = results[i];
       console.log(place);
       createMarker(place);
