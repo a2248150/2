@@ -44,9 +44,7 @@ function initializeMap() {
   
   document.getElementById("changeRadius").addEventListener("click", () => {
       
-    radius = document.getElementById("radiusInput").innerHTML;
-    console.log(document.getElementById("radiusInput").innerHTML);
-    console.log(radius);
+    radius = document.getElementById("radiusInput").value;
     radiusTag.innerHTML = "Current Radius: " + radius;
     currentLocation();
     
@@ -103,11 +101,11 @@ function searchForPark(location) {
   let request = {
     location: location,
     radius: radius,
-    query: "park"
+    type: "park"
   };
   
   service = new google.maps.places.PlacesService(map);
-  service.textSearch(request, processParks);
+  service.nearbySearch(request, processParks);
   
 }
 
