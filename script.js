@@ -11,6 +11,7 @@ let infoWindowCurrentLocation; // for your location
 let markers = []; // list of all markers on the map
 
 let radius = 500;
+let radiusTag = document.getElementById("radius");
 
 // when the window loads, intialize the map
 window.onload = initializeMap;
@@ -37,33 +38,22 @@ function initializeMap() {
   
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
-  locationButton.addEventListener("click", () => {
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-
-          infoWindowCurrentLocation.setPosition(pos);
-          infoWindowCurrentLocation.setContent("Location found.");
-          infoWindowCurrentLocation.open(map);
-          map.setCenter(pos);
-          
-          searchForPark(pos);
-          
-        },
-        () => {
-          handleLocationError(true, infoWindowCurrentLocation, map.getCenter());
-        }
-      );
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindowCurrentLocation, map.getCenter());
-    }
+  locationButton.addEventListener("click", () => currentLocation());
+  
+  document.getElementById("radiusP").addEventListener("click", () => {
+      
+    radius += 50;
+    currentLocation();
+    
   });
+  
+  document.getElementById("radiusM").addEventListener("click", () => {
+      
+    radius -= 50;
+    currentLocation();
+    
+  });
+  
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -74,6 +64,36 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       : "Error: Your browser doesn't support geolocation."
   );
   infoWindow.open(map);
+}
+
+function currentLocation() {
+  
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+
+        infoWindowCurrentLocation.setPosition(pos);
+        infoWindowCurrentLocation.setContent("Location found.");
+        infoWindowCurrentLocation.open(map);
+        map.setCenter(pos);
+
+        searchForPark(pos);
+
+      },
+      () => {
+        handleLocationError(true, infoWindowCurrentLocation, map.getCenter());
+      }
+    );
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindowCurrentLocation, map.getCenter());
+  }
+  
 }
 
 // Search for parks within 5 km
