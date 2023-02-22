@@ -19,6 +19,8 @@ window.onload = initializeMap;
 // intialize map
 function initializeMap() {
   
+  radiusTag.innerHTML = "Current Radius: " + radius;
+  
   map = new google.maps.Map(document.getElementById("map"), {
     center: myLocation,
     zoom: 13
@@ -40,16 +42,12 @@ function initializeMap() {
 
   locationButton.addEventListener("click", () => currentLocation());
   
-  document.getElementById("radiusP").addEventListener("click", () => {
+  document.getElementById("changeRadius").addEventListener("click", () => {
       
-    radius += 50;
-    currentLocation();
-    
-  });
-  
-  document.getElementById("radiusM").addEventListener("click", () => {
-      
-    radius -= 50;
+    radius = document.getElementById("radiusInput").innerHTML;
+    console.log(document.getElementById("radiusInput").innerHTML);
+    console.log(radius);
+    radiusTag.innerHTML = "Current Radius: " + radius;
     currentLocation();
     
   });
