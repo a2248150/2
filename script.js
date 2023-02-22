@@ -10,7 +10,7 @@ let infoWindowCurrentLocation; // for your location
 
 let markers = []; // list of all markers on the map
 
-let radius = 500;
+let radius = 5000;
 let radiusTag = document.getElementById("radius");
 
 // when the window loads, intialize the map
@@ -149,7 +149,7 @@ function createMarker(place) {
   
   google.maps.event.addListener(marker, "click", () => {
     let contentString = "<h3>" + place.name + "</h3>" + "Rating: <b>"
-         + place.rating + "<b> / 5 <p>" + place.formatted_address + "</p>";
+         + place.rating + "<b> / 5 <p>" + place.vicinity + "</p>";
     
     infoWindowPark.setContent(contentString || "");
     infoWindowPark.open(map, marker);
