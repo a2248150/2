@@ -11,22 +11,26 @@
         {
             "src": "https://cdn.glitch.global/46630b7e-9e8d-4970-8d69-9272f39ad4ec/icon-192x192.png?v=1677171293920",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         },
         {
             "src": "https://cdn.glitch.global/46630b7e-9e8d-4970-8d69-9272f39ad4ec/icon-256x256.png?v=1677171294490",
             "sizes": "256x256",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         },
         {
             "src": "https://cdn.glitch.global/46630b7e-9e8d-4970-8d69-9272f39ad4ec/icon-384x384.png?v=1677171294884",
             "sizes": "384x384",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         },
         {
             "src": "https://cdn.glitch.global/46630b7e-9e8d-4970-8d69-9272f39ad4ec/icon-512x512.png?v=1677171295567",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         }
     ]
 }
