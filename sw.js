@@ -4,7 +4,7 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(version).then(function(cache) {
       
-      return cache.addAll([
+      try {return cache.addAll([
         '/',
         '/index.html',
         '/style.css',
@@ -15,8 +15,8 @@ self.addEventListener('install', function(event) {
         '/icon-384x384.png',
         '/icon-512x512.png',
         '/notfound.txt'
-      ]);
-    })
+      ]);}
+    catch{}})
   );
 });
 
