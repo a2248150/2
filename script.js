@@ -26,6 +26,10 @@ function initializeMap() {
     zoom: 13
   });
   
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+  } 
+  
   searchForPark(myLocation);
   
   // https://developers.google.com/maps/documentation/javascipt/infowindows
